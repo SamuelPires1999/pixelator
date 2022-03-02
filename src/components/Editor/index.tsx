@@ -15,6 +15,7 @@ import { useState } from "react";
 import useStore from "../../useStore";
 import Board from "../Board";
 import ColorList from "../ColorList";
+import DimensionEditor from "../DimensionEditor";
 
 const Editor = () => {
   const [editorOn, setEditorOn] = useState(false);
@@ -41,45 +42,15 @@ const Editor = () => {
         Pixelator
       </Text>
 
-      {!editorOn && (
-        <>
-          <Text>Choose a board size</Text>
-          <HStack>
-            <NumberInput
-              onChange={(value) => {
-                state.setBoardRows(parseInt(value));
-              }}
-              min={4}
-              maxW={"100px"}
-            >
-              <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-            <Text fontSize={"48px"}>/</Text>
-            <NumberInput
-              onChange={(value) => {
-                state.setBoardCols(parseInt(value));
-              }}
-              min={4}
-              maxW={"100px"}
-            >
-              <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-          </HStack>
-        </>
-      )}
+      {!editorOn && <DimensionEditor />}
       {editorOn && (
         <>
           <Button size={"sm"} onClick={toggleEditor} colorScheme={"red"}>
             <Text>Generate New Board</Text>
           </Button>
+          <Text fontWeight={"bold"} fontSize="xs">
+            Note that generating a new board will ERASE your drawing, so beware
+          </Text>
           <Flex gap={4}>
             <Text>Selected Color</Text>
             <Box
