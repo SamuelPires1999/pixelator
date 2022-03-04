@@ -7,6 +7,13 @@ const Tile = ({ borders }: TileProps) => {
   const state = useStore();
   const [bgColor, setBgColor] = useState("white");
 
+	const handleMouseOver = (event: React.MouseEvent<HTMLDivElement>) => {
+			event.preventDefault()
+			if(event.buttons === 1){
+				setBgColor(state.selectedColor.code)
+			}
+	}
+
   return (
     <Box
       w={5}
@@ -17,6 +24,7 @@ const Tile = ({ borders }: TileProps) => {
         backgroundColor: state.selectedColor.code,
       }}
       onClick={() => setBgColor(state.selectedColor.code)}
+			onMouseOver={handleMouseOver}
     />
   );
 };

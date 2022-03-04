@@ -2,28 +2,24 @@ import {
   Box,
   Button,
   Flex,
-  HStack,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import useStore from "../../useStore";
 import Board from "../Board";
 import ColorList from "../ColorList";
 import DimensionEditor from "../DimensionEditor";
+import {exportComponentAsPNG} from 'react-component-export-image'
 
 const Editor = () => {
   const [editorOn, setEditorOn] = useState(false);
+	const boardRef = useRef(null)
   const state = useStore();
 
   const toggleEditor = () => {
     setEditorOn(!editorOn);
-  };
+	};
 
   return (
     <VStack
@@ -67,7 +63,7 @@ const Editor = () => {
         </>
       )}
       <Button size={"sm"} onClick={toggleEditor} colorScheme={"red"}>
-        <Text>{editorOn ? "Save Drawing" : "Generate Board"}</Text>
+        <Text>{"Generate Board"}</Text>
       </Button>
     </VStack>
   );
