@@ -21,6 +21,7 @@ const DimensionEditor = () => {
             state.setBoardRows(parseInt(value));
           }}
           min={4}
+					max={30}
           maxW={"100px"}
           defaultValue={4}
           value={state.boardRows}
@@ -37,6 +38,7 @@ const DimensionEditor = () => {
             state.setBoardCols(parseInt(value));
           }}
           min={4}
+					max={80}
           maxW={"100px"}
           value={state.boardColumns}
         >
